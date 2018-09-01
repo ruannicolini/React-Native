@@ -1,0 +1,18 @@
+No VS CODE.
+
+1 - Instalação do Eslint globalmente com o NPM
+Comando: npm install -g eslint
+
+2 - Dentro da pasta do projeto, 
+Instalação das configurações padrões para validação dos códigos escritos em Javascript
+Comando: npm install --save-dev eslint-config-rallycoding
+
+3 - Utilizar a configuração dentro do projeto
+criar arquivo: .eslintrc
+Código:
+{
+"extends": "rallycoding"
+}
+
+4 - Ir na aba extensões do VS Code e pesquisar por eslint, clciar em "instalar" e depois clicar em "recarregar"
+

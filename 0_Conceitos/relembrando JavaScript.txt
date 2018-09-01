@@ -1,0 +1,251 @@
+
+https://jsfiddle.net
+
+var valor = 1001;
+
+document.write(valor);
+
+document.write('Olá Mundo');
+
+var nome = prompt('Digite seu nome: ');
+
+console.log('nome');
+
+alert('Que nome bonito!');
+
+
+// ==================== Atribuição Desestruturada ==================== 
+- variaveis
+[a,b,c,d] = [10,12,5,65]; //Declaracao e atribuição de variaveis em conjunto; a,b,c e d sao variaveis.
+ 
+- Objetos
+({nome, idade, sexo} = {nome:'Jose', idade:33, sexo:'M'}) // a variavel tem que ter o mesmo nome que o atributo.
+
+
+// ==================== Arrays ==================== 
+
+var lista_compras = Array(); // ou var lista_compras = [];
+
+lista_compras[0] = "Arroz";
+lista_compras[1] = "Feijão";
+lista_compras[2] = "Macarrão";
+lista_compras[3] = "Abacaxi";
+lista_compras[4] = "Refrigerante";
+
+// ou 
+
+var lista_feira = ['mamão','banana','uva', 'maçã']
+
+document.write(lista_feira[0]);
+
+
+// ==================== Array Multidimensionais ==================== 
+
+var automoveis = Array();
+
+automoveis['motos'] = ["Yamaha Fazer 250", "Yamaha Factor 150 E", "Suzuki Burgman", "Suzuki RF 600 R"];
+automoveis['carros'] = Array();
+
+automoveis['carros'][0] = "Fiat Palio";
+automoveis['carros'][1] = "Fiat Punto";
+automoveis['carros'][2] = "Honda Civic";
+automoveis['carros'][3] = "Honda Fit";
+
+document.write( automoveis['carros'][2] + ' ===== ' + automoveis['motos'][2] );
+
+//Exemplo deArrays tridimensionais ou superiores
+var automoveis = Array();
+automoveis['motos'] = Array();
+automoveis['motos']['Yamaha'] = Array();
+automoveis['motos']['Suzuki'] = Array();
+automoveis['motos']['Yamaha'][0] = "Fazer 250"; 
+automoveis['motos']['Yamaha'][1] = "Factor 150 E";
+automoveis['motos']['Suzuki'][0] = "Burgman";
+automoveis['motos']['Suzuki'][1] = "RF 600 R";
+document.write( automoveis['motos']["Yamaha"][0] );
+
+================ OPERADORES ================== 
+IGUAL ==  
+IDENTICO === // VERIFICA SE VALORES SAO IGUAIS E DO MESMO TIPO
+DIFERENTE !=
+NÃO IDENTICO !== // VERIFICA SE SAO DIFERENTES DE VALOR E TIPO;
+
+AND &&
+OR  ||
+NOT !
+
+
+================ CONDICIONAIS ================== 
+
+if(){
+
+}else{
+
+}
+
+
+switch( parseInt(Valor_string) ){
+	case 1:
+	//
+	break;
+
+	case 2:
+	//
+	break;
+	
+	default:
+	//
+	break;
+
+}
+
+================ LOOPS ================== 
+while(){
+}
+
+do{
+}while();
+
+for(int i = 0; i= x;i++){
+}
+
+================ FUNÇÕES ================== 
+
+function exemplo(largura, comprimento){
+	return largura*comprimento;
+}
+
+================ VAR VS LET ================== 
+var = declaração de variaveis normal.
+let = variavel usada apenas dentro de um bloco, como um if por exemplo;
+
+
+================ Orientação a objetos ================== 
+
+==== Classes
+
+class Casa{
+
+  constructor(cor_atributo, qtd_quartos_atributo){
+    this.cor = cor_atributo;
+    this.qtdQuartos  = qtd_quartos_atributo;
+  }  
+
+  getInformacoes(){
+    document.write("cor: "+ this.cor + " + QtdQuartos: " + this.qtdQuartos;
+  }
+
+  setInformacoes(){
+
+  }
+
+  static abrirPortao(portao){
+	document.write("Abrir Portão:" + portao);
+  }	
+
+}
+
+var casa = new Casa('Branca',4); //Instanciando o objeto
+
+casa.getInformacoes(); // Chama método - obj instanciado
+
+Casa.abrirPortao(); //Metodos estaticos - Classe;
+
+
+===== HERANÇA
+
+class Animal{
+  constructor(cor,peso){
+    this.cor = cor;
+    this.peso = peso;
+  }
+
+  dormir(){
+    document.write("Dormir");
+  }
+
+}
+
+class Cao extends Animal{
+
+  constructor(cor,peso, raca){
+    super(cor,peso); // usa o construtor do pai
+    this.raca = raca;
+  }
+
+  latir(){
+    document.write("+Latir");
+  }
+
+  dormir(){ // SOBRESCRITA DE METODO
+    super.dormir();
+    document.write(" como Cão");
+  }
+
+}
+
+class Passaro extends Animal{
+  voar(){
+    document.write("+Voar");
+  }
+}
+
+class Papagaio extends Passaro{
+  falar(){
+    document.write("+Papagaio fala");
+  }
+}
+
+var cao = new Cao("Marrom",30,"Labrador");
+cao.dormir();
+cao.latir();
+
+var passaro = new Passaro();
+passaro.dormir();
+passaro.latir();
+
+var papagaio = new Papagaio();
+papagaio.dormir();
+papagaio.voar();
+papagaio.falar();
+
+
+============= JSON e Objetos Literais ============
+
+=====  Objetos Literais
+o objeto literal é estatico, nao pode mudar seus valores apos a criação;
+os valores são fixos;
+
+var objetoLiteral = { 
+  cor:"Marrom", 
+  peso: 30, 
+  raca: "Labrador", 
+  filhotes: { filhote1:"Rex", filhote2: "Doug"}
+}
+
+document.write( objetoLiteral.raca );
+
+
+====== JSON
+
+var objetoJSON = {"cor":"Marrom", "peso": 30, "raca": "Labrador"};
+
+var objeto = JSON.parse(objetoJSON); // Converte para Objeto Literal
+
+document.write( objeto.raca );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
