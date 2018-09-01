@@ -1,53 +1,57 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React from 'react';
+import { Text, View, Button, AppRegistry } from 'react-native';
 
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+//Formatações
+const Estilos  = {
+  estiloTexto: {
+    fontSize: 40,
+    backgroundColor: '#08509B',
+    margin:0,
+    paddingTop:15,
+    color: "#fff",
+    
+    textAlign: 'center', // 'left','right','center','justify';
 
-export default class frases extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
+    textDecorationLine: 'line-through', // 'underline', // Pode usar mais de um valor na propridade,
+
+    fontStyle: 'italic', // 'normal', 'italic'
+    fontWeight: 'bold', // Define a "Grossura" da fonte". Recebe 'bold' ou valores de 100 a 900;
+    
+    // shadowColor: '#000',
+    // shadowOffset: {width:0, height:2}, // Width negativo: Lado Esquerdo | Width  Positivo: Lado Direito | height Negativo: Superior | height Positivo Inferior 
+    // shadowOpacity: 0.4, // De 0 ate 1 - Define a "transparencia"
+    // shadowRadius: 20, //  "Borrado"
+
+    /*
+    // height:300,
+    // width:300,
+
+    //padding: 30, // ou 
+    // paddingHorizontal:30,
+    // paddingVertical:30, //ou
+    paddingTop: 30, 
+    paddingLeft: 30, 
+    paddingBottom: 30,
+    paddingRight: 30,
+
+    //margin:30, // ou 
+    // marginHorizontal:30,
+    // marginVertical:30, //ou
+    marginTop: 30, 
+    marginLeft: 30, 
+    marginBottom: 30,
+    marginRight: 30
+    */
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+const App = () => {
+  return(
+      <View>
+        <Text style={Estilos.estiloTexto} >Frases do Dia</Text>
+      </View>
+  );
+};
 
-AppRegistry.registerComponent('frases', () => frases);
+//Renderizar
+AppRegistry.registerComponent('frases', () =>{ return App } )
