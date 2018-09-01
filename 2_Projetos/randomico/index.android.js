@@ -1,21 +1,29 @@
-var React = require('react');
+// ================== importação notação ES6 ================== 
+import React from 'react';
+import {Text, View, Button, AppRegistry} from 'react-native'; //Atribuição Desestruturada
 
-//Atribuição Desestruturada
-var {Text, View, Button, AppRegistry} = require('react-native');
+// ================== importação notação commonJS ================== 
+// var React = require('react'); 
+// var {Text, View, Button, AppRegistry} = require('react-native'); //Atribuição Desestruturada
 
-// Ou
+// // Ou
 
-// Atribuicao de Variavel
-// var Text = require('react-native').Text;
-// var View = require('react-native').View;
-// var Button = require('react-native').Button;
-// var AppRegistry = require('react-native').AppRegistry;
+// // Atribuicao de Variavel
+// // var Text = require('react-native').Text;
+// // var View = require('react-native').View;
+// // var Button = require('react-native').Button;
+// // var AppRegistry = require('react-native').AppRegistry;
 
-const geraNumeroAleatorio = () => { //Notação Arrow Function
+
+// ================== Funções Notação Arrow Function ================== 
+
+const geraNumeroAleatorio = () => {
   var numero_aleatorio = Math.floor(Math.random() * 10);
   alert(numero_aleatorio);
 }
 
+
+// ================== Funções Notação Padrao ==================
 const App = function(){
 
   return (
