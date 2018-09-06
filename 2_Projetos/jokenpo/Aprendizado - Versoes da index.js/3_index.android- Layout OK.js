@@ -9,8 +9,6 @@ import {
   Image
 } from 'react-native';
 
-import Topo from './src/components/topo.js';
-import Icone from './src/components/icone.js';
 
 class jokenpo extends Component{
 
@@ -117,6 +115,73 @@ class jokenpo extends Component{
   }
 }
 
+class Icone extends Component{
+  render(){
+    if( this.props.escolha == 'pedra'){
+      return( 
+        <View style={ styles.txtIcone }>
+          <Text style={ styles.txtJogador} >{ this.props.jogador }</Text>
+          <Image source={require('./img/pedra.png')} />
+        </View> 
+      ); 
+    } else if(this.props.escolha == 'papel'){
+      return( 
+        <View style={ styles.txtIcone }>
+          <Text style={ styles.txtJogador}>{ this.props.jogador }</Text>
+          <Image source={require('./img/papel.png')} />
+        </View>
+      ); 
+    }else if(this.props.escolha == 'tesoura'){
+      return( 
+        <View style={ styles.txtIcone}>
+          <Text style={ styles.txtJogador}>{ this.props.jogador }</Text>
+          <Image source={require('./img/tesoura.png')} />
+        </View> 
+      );
+    }else{
+      return false
+    }
+  }
+}
+
+class Topo extends Component{
+  render(){
+    return(
+      <View> 
+        <Image source = { require('./img/jokenpo.png') }/>  
+      </View>
+    );
+  }
+}
+
+// class Conteudo extends Component{
+//   render(){
+//     return(
+//       <View style={ styles.painelAcoes } >
+//         <View  style = { styles.btnEscolha }>
+//           <Button title ='Pedra' onPress={ () => { this.jokenpo('pedra') } } />
+//         </View>
+
+//         <View style={ styles.btnEscolha }>
+//           <Button title ='Papel' onPress={ () => { this.jokenpo('papel') } }/>
+//         </View>
+        
+//         <View style = { styles.btnEscolha } >
+//           <Button title ='Tesoura' onPress={ () => { this.jokenpo('tesoura') } } />
+//         </View>
+//       </View>
+//     );
+//   }
+// }
+
+// class Footer extends Component{
+//   render(){
+//     return(
+//       <View></View>
+//     );
+//   }
+// }
+
 const styles = StyleSheet.create({
   btnEscolha: {
     width: 90
@@ -135,7 +200,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'red',
     height: 60  
-  }
+  },
+  txtIcone:{
+    alignItems: 'center',
+    marginBottom: 20
+
+  },
+  txtJogador:{
+    fontSize: 18
+  } 
 });
 
 AppRegistry.registerComponent('jokenpo', () => jokenpo);
