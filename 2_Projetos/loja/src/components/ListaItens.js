@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import {
+  View, 
   Text
 } from 'react-native';
 
-export default class loja extends Component {
+import Itens from './Itens';
+
+export default class ListaItens extends Component {
   render() {
     return (
-        <Text>Teste de importação de componente</Text>
+        <View>
+            <Text></Text>
+            <Itens/>
+            <Itens/>
+            <Itens/>
+        </View>    
     );
   }
 }
