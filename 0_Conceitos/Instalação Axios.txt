@@ -1,0 +1,13 @@
+
+Instalação AXIOS - Para requisições HTTP
+
+0- Acesse a pasta do projeto e rode o seguinte código:
+
+1-
+npm install --save-dev babel-preset-es2015
+
+2- 
+npm install --save-dev babel-preset-react
+
+3-
+npm install --save axios
