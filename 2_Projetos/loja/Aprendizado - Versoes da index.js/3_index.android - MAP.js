@@ -3,12 +3,12 @@ import {
   AppRegistry
 } from 'react-native';
 
-import ListaItens from './src/components/ListaItens';
+import ListaItens from './src/components/ListaItens.js';
 
-class loja extends Component {
+export default class loja extends Component {
   render() {
     return (
-      <ListaItens />    
+      <ListaItens></ListaItens>     
     );
   }
 }
