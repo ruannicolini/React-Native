@@ -1,25 +1,15 @@
 
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  View,
-  StatusBar
+  AppRegistry
 } from 'react-native';
 
-// IMPORTAR BARRA DE NAVEGAÇÃO
-import BarraNavegacao from './src/components/BarraNavegacao';
+import CenaPrincipal from './src/components/CenaPrincipal';
 
 export default class atm extends Component {
   render() {
     return (
-      <View>
-        <StatusBar 
-          hidden={false} // visivel = false |  OBS pode-se passar apenas "hidden" sem definir true ou false, nesse caso é false
-          backgroundColor='#CCC'
-        />
-        <BarraNavegacao /> 
-      </View>
-       
+      <CenaPrincipal/>
     );
   }
 }
