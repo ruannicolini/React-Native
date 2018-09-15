@@ -50,20 +50,24 @@ export default class CenaPrincipal extends Component {
 
 const styles = StyleSheet.create({
     estiloLogo: {
-        margin: 10,
-        padding: 10
+        // marginTop: 10,
+        margin: 20,
+        marginBottom: 5,
+        alignItems: 'center',
+        // backgroundColor: 'black'
     },
     estiloPanelMenu: {
-        margin: 10,
-        padding: 10,
+        marginRight: 20,
+        marginLeft: 20,
+        alignItems: 'center',
         flexDirection: 'column',
-        backgroundColor: 'green'
+        // backgroundColor: 'green',
+        // justifyContent: 'space-between'
     },
     estiloRowMenu: {
         flexDirection: 'row'
     },
     estiloItemMenu: {
-        margin: 10,
-        padding: 10    
+        margin: 15  
     }
 })
