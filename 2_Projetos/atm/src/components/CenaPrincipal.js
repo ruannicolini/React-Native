@@ -5,7 +5,8 @@ import {
   StatusBar,
   Image,
   ScrollView,
-  StyleSheet
+  StyleSheet,
+  TouchableHighlight
 } from 'react-native';
 
 import BarraNavegacao from './BarraNavegacao';
@@ -33,7 +34,13 @@ export default class CenaPrincipal extends Component {
 
                 <View style={styles.estiloPanelMenu }>
                     <View style={styles.estiloRowMenu}>
-                        <Image style={styles.estiloItemMenu} source = {menuCliente}/>
+                        <TouchableHighlight 
+                            onPress={ () => {  //OnPress recebe uma função. Implementei uma função de callback
+                                this.props.pNavigator.push( { id : 'b' }); // O navigator funciona como uma estrutura de dados pilha, a funcao push coloca uma cena no topo a ser executada. Acessamos o navigator atraves da prop crica "pNavigator"
+                            } } 
+                        >
+                            <Image style={styles.estiloItemMenu} source = {menuCliente}/>
+                        </TouchableHighlight>
                         <Image style={styles.estiloItemMenu} source = {menuContato}/>
                     </View>
 

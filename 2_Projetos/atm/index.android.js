@@ -14,12 +14,12 @@ export default class atm extends Component {
         renderScene={(route, navigator) => { 
             /* Definir a cena com base na rota */
 
-            if(route.id === 'a'){
+            if (route.id === 'a'){
               //exibe a cena Principal
-              return( <CenaPrincipal /> );
+              return( <CenaPrincipal pNavigator = {navigator} /> ); //Passei o componente Navigator como uma props para o componente Cena Principal
             }
 
-            if(route.id === 'b'){
+            if (route.id === 'b'){
               //exibe a cena Principal
               return( <CenaClientes /> );
             }
