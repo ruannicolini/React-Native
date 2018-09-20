@@ -21,7 +21,7 @@ export default class atm extends Component {
 
             if (route.id === 'b'){
               //exibe a cena Principal
-              return( <CenaClientes /> );
+              return( <CenaClientes pNavigator = {navigator} /> );
             }
 
         } }

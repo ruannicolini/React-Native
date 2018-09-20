@@ -24,7 +24,7 @@ export default class CenaClientes extends Component {
                 backgroundColor='#B9C941'
                 />
 
-                <BarraNavegacao /> 
+                <BarraNavegacao voltar pNavigator={ this.props.pNavigator } /> 
 
                 <View style ={styles.ItemPrincipal} >
                     <Image source={ImagemDetalheCliente} />

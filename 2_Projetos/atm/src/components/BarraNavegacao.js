@@ -3,11 +3,33 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  StyleSheet
+  StyleSheet,
+  Image,
+  TouchableHighlight
 } from 'react-native';
+
+const btnVoltar = require('../imgs/btn_voltar.png');
 
 export default class BarraNavegacao extends Component {
   render() {
+    if (this.props.voltar){
+      return (
+        <View style={styles.barraTitulo}>
+
+          <TouchableHighlight 
+              onPress={ () => {  //OnPress recebe uma função. Implementei uma função de callback
+                  this.props.pNavigator.pop(); // a funcao pop remove a cena do topo da pilha de cenas do navigator
+              } } 
+          >
+            <Image source= {btnVoltar } />
+          </TouchableHighlight>
+
+          
+          <Text style={ styles.titulo } >ATM Consultoria</Text>
+        </View>
+      );
+    }
+   
     return (
       <View style={styles.barraTitulo}>
         <Text style={ styles.titulo } >ATM Consultoria</Text>
@@ -20,7 +42,8 @@ const styles = StyleSheet.create({
     barraTitulo: {
         backgroundColor: '#CCC',
         padding: 10,
-        height: 60
+        height: 60,
+        flexDirection: 'row'
     },
     titulo: {
         flex: 1,
