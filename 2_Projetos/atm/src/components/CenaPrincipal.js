@@ -41,12 +41,36 @@ export default class CenaPrincipal extends Component {
                         >
                             <Image style={styles.estiloItemMenu} source = {menuCliente}/>
                         </TouchableHighlight>
-                        <Image style={styles.estiloItemMenu} source = {menuContato}/>
+
+                        <TouchableHighlight 
+                            onPress={ () => {  //OnPress recebe uma função. Implementei uma função de callback
+                                this.props.pNavigator.push( { id : 'c' }); // O navigator funciona como uma estrutura de dados pilha, a funcao push coloca uma cena no topo a ser executada. Acessamos o navigator atraves da prop crica "pNavigator"
+                            } } 
+                        >
+                            <Image style={styles.estiloItemMenu} source = {menuContato}/>
+                        </TouchableHighlight>
+
                     </View>
 
                     <View style={styles.estiloRowMenu}>
-                        <Image style={styles.estiloItemMenu} source = {menuEmpresa}/>
-                        <Image style={styles.estiloItemMenu} source = {menuServico}/>
+                        
+                        <TouchableHighlight 
+                            onPress={ () => {  //OnPress recebe uma função. Implementei uma função de callback
+                                this.props.pNavigator.push( { id : 'e' }); // O navigator funciona como uma estrutura de dados pilha, a funcao push coloca uma cena no topo a ser executada. Acessamos o navigator atraves da prop crica "pNavigator"
+                            } } 
+                        >
+                            <Image style={styles.estiloItemMenu} source = {menuEmpresa}/>
+                        </TouchableHighlight>
+
+                        <TouchableHighlight 
+                            onPress={ () => {  //OnPress recebe uma função. Implementei uma função de callback
+                                this.props.pNavigator.push( { id : 's' }); // O navigator funciona como uma estrutura de dados pilha, a funcao push coloca uma cena no topo a ser executada. Acessamos o navigator atraves da prop crica "pNavigator"
+                            } } 
+                        >
+                            <Image style={styles.estiloItemMenu} source = {menuServico}/>
+                        </TouchableHighlight>
+
+                        
                     </View>
                 </View>
 

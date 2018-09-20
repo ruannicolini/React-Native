@@ -5,6 +5,9 @@ import { Navigator } from 'react-native-deprecated-custom-components'
 
 import CenaPrincipal from './src/components/CenaPrincipal';
 import CenaClientes from './src/components/CenaClientes';
+import CenaContatos from './src/components/CenaContatos';
+import CenaEmpresa from './src/components/CenaEmpresa';
+import CenaServicos from './src/components/CenaServicos';
 
 export default class atm extends Component {
   render() {
@@ -14,15 +17,14 @@ export default class atm extends Component {
         renderScene={(route, navigator) => { 
             /* Definir a cena com base na rota */
 
-            if (route.id === 'a'){
-              //exibe a cena Principal
-              return( <CenaPrincipal pNavigator = {navigator} /> ); //Passei o componente Navigator como uma props para o componente Cena Principal
-            }
-
-            if (route.id === 'b'){
-              //exibe a cena Principal
-              return( <CenaClientes pNavigator = {navigator} /> );
-            }
+            switch(route.id) {
+              case 'a' : return( <CenaPrincipal pNavigator = {navigator} /> );
+              case 'b' : return( <CenaClientes pNavigator = {navigator} /> );
+              case 'c' : return( <CenaContatos pNavigator = {navigator} /> );
+              case 'e' : return( <CenaEmpresa pNavigator = {navigator} /> );
+              case 's' : return( <CenaServicos pNavigator = {navigator} /> );
+              default : false;
+            }            
 
         } }
       />

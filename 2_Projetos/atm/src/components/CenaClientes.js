@@ -18,13 +18,13 @@ const Imagemcliente2 = require('../imgs/cliente2.png');
 export default class CenaClientes extends Component {
     render() {
         return (
-            <ScrollView>
+            <ScrollView style={ { flex: 1 ,backgroundColor: '#FFF' /*Estilo para efeito de transicao */ } } >
                 <StatusBar 
                 hidden={false} // visivel = false |  OBS pode-se passar apenas "hidden" sem definir true ou false, nesse caso é false
                 backgroundColor='#B9C941'
                 />
 
-                <BarraNavegacao voltar pNavigator={ this.props.pNavigator } /> 
+                <BarraNavegacao voltar pNavigator={ this.props.pNavigator } pCorFundo ='#B9C941'/> 
 
                 <View style ={styles.ItemPrincipal} >
                     <Image source={ImagemDetalheCliente} />

@@ -14,7 +14,7 @@ export default class BarraNavegacao extends Component {
   render() {
     if (this.props.voltar){
       return (
-        <View style={styles.barraTitulo}>
+        <View style={ [styles.barraTitulo, {backgroundColor: this.props.pCorFundo}] }>
 
           <TouchableHighlight 
               onPress={ () => {  //OnPress recebe uma função. Implementei uma função de callback
