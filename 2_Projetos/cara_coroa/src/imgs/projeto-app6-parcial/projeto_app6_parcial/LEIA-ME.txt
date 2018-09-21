@@ -1,0 +1,3 @@
+Arquivo index.android.js atualizado com a codificação da cena inicial do projeto app6.
+
+Bons estudos :D
