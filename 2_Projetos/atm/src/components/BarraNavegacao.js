@@ -20,6 +20,8 @@ export default class BarraNavegacao extends Component {
               onPress={ () => {  //OnPress recebe uma função. Implementei uma função de callback
                   this.props.pNavigator.pop(); // a funcao pop remove a cena do topo da pilha de cenas do navigator
               } } 
+              underlayColor={this.props.pCorFundo} // Cor ao ser clicado
+              activeOpacity={0.3} //Grau de Opacitadade ao ser clicado
           >
             <Image source= {btnVoltar } />
           </TouchableHighlight>

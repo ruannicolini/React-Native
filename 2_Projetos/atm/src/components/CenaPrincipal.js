@@ -35,6 +35,8 @@ export default class CenaPrincipal extends Component {
                 <View style={styles.estiloPanelMenu }>
                     <View style={styles.estiloRowMenu}>
                         <TouchableHighlight 
+                            underlayColor={'#B9C941'} // Cor ao ser clicado
+                            activeOpacity={0.3} //Grau de Opacitadade ao ser clicado
                             onPress={ () => {  //OnPress recebe uma função. Implementei uma função de callback
                                 this.props.pNavigator.push( { id : 'b' }); // O navigator funciona como uma estrutura de dados pilha, a funcao push coloca uma cena no topo a ser executada. Acessamos o navigator atraves da prop crica "pNavigator"
                             } } 
@@ -43,6 +45,8 @@ export default class CenaPrincipal extends Component {
                         </TouchableHighlight>
 
                         <TouchableHighlight 
+                            underlayColor={'#61DB8C'}
+                            activeOpacity={0.3}
                             onPress={ () => {  //OnPress recebe uma função. Implementei uma função de callback
                                 this.props.pNavigator.push( { id : 'c' }); // O navigator funciona como uma estrutura de dados pilha, a funcao push coloca uma cena no topo a ser executada. Acessamos o navigator atraves da prop crica "pNavigator"
                             } } 
@@ -55,6 +59,8 @@ export default class CenaPrincipal extends Component {
                     <View style={styles.estiloRowMenu}>
                         
                         <TouchableHighlight 
+                            underlayColor={'#EC7148'}
+                            activeOpacity={0.3}
                             onPress={ () => {  //OnPress recebe uma função. Implementei uma função de callback
                                 this.props.pNavigator.push( { id : 'e' }); // O navigator funciona como uma estrutura de dados pilha, a funcao push coloca uma cena no topo a ser executada. Acessamos o navigator atraves da prop crica "pNavigator"
                             } } 
@@ -63,6 +69,8 @@ export default class CenaPrincipal extends Component {
                         </TouchableHighlight>
 
                         <TouchableHighlight 
+                            underlayColor={'#19D1C8'}
+                            activeOpacity={0.3}
                             onPress={ () => {  //OnPress recebe uma função. Implementei uma função de callback
                                 this.props.pNavigator.push( { id : 's' }); // O navigator funciona como uma estrutura de dados pilha, a funcao push coloca uma cena no topo a ser executada. Acessamos o navigator atraves da prop crica "pNavigator"
                             } } 
