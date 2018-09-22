@@ -10,10 +10,10 @@ import OutrosJogos from './src/components/OutrosJogos.js';
 export default class cara_coroa extends Component {
   render() {
     return (
-      <Router>
-        <Scene key='sobrejogo' component={ SobreJogo } />
+      <Router sceneStyle={ {paddingTop:50 } } >
+        <Scene key='sobrejogo' component={ SobreJogo } title="Sobre o Jogo" />
         <Scene key='principal' component={ Principal } title="Cara ou Coroa" initial />
-        <Scene key='outrosjogos' component={ OutrosJogos } />
+        <Scene key='outrosjogos' component={ OutrosJogos } title="Outros Jogos" />
       </Router>
     );
   }
