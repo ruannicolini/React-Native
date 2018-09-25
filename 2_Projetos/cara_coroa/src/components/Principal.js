@@ -22,7 +22,9 @@ export default class Principal extends Component {
 
           <Image source={logo} />
           
-          <TouchableHighlight>
+          <TouchableHighlight
+            onPress={ ()=>{ Actions.resultado(); } }
+          >
             <Image source={btnJogar} />
           </TouchableHighlight>
           
