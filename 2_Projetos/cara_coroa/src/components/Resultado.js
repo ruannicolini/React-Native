@@ -32,13 +32,14 @@ export default class Resultado extends Component {
                     <Image source={cara} />
                 </ScrollView>
             );
-        }else{
-            return (
-                <ScrollView style={ styles.resultado } >
-                    <Image source={coroa} />
-                </ScrollView>
-            );
         }
+        
+        return (
+            <ScrollView style={ styles.resultado } >
+                <Image source={coroa} />
+            </ScrollView>
+        );
+        
 	}
 }
 
