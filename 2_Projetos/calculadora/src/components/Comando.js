@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Button } from 'react-native';
 
 const Comando = props => (
     <View>
-        <Text> -- Comando</Text>
+        <Button title='comando' />
     </View>
 );
 
