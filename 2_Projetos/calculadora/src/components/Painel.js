@@ -31,18 +31,39 @@ class Painel extends Component {
         //Para amarrar o contexto a um componente especifico, utilizamos o codigo abaixo.
         this.calcular = this.calcular.bind(this);
 
+        this.atualizaValor = this.atualizaValor.bind(this);
+
     }
 
-    calcular(){
-        const  resultado = parseFloat(this.state.num1) + parseFloat(this.state.num2);
+    calcular () {
+        const resultado = parseFloat(this.state.num1) + parseFloat(this.state.num2);
         console.log(resultado);
+    }
+
+    atualizaValor (nomeCampo, numero) {
+
+        // Obs: o javascript nao entende que na função this.setStates os indices do 
+        // objeto literal podem ser variaveis, 
+        // entao nao podemos simplismente codificar this.setState({ nomeCampo: numero });
+
+        // Devemos criar um objeto literal e atribuir os indices e valores, como no exemplo abaixo: 
+        const obj = {};
+        obj[nomeCampo] = numero
+
+        //Depois entao atribuir esse valor a variaveis de estado
+        this.setState( obj );
+        console.log(obj);
     }
 
     render () {
         return(
             <View>
                 <Text>Painel</Text>
-                <Entrada num1={this.state.num1} num2={this.state.num2} />
+                <Entrada 
+                    num1={this.state.num1} 
+                    num2={this.state.num2} 
+                    atualizaValor={ this.atualizaValor }
+                />
                 <Operacao />
                 <Comando acao={this.calcular} />
             </View>
