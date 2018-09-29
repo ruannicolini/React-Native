@@ -3,7 +3,7 @@ import { View, Button } from 'react-native';
 
 const Comando = props => (
     <View>
-        <Button title='comando' />
+        <Button title='comando' onPress={ props.acao } />
     </View>
 );
 

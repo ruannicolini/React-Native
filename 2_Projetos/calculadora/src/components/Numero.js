@@ -3,7 +3,7 @@ import { View, TextInput, StyleSheet } from 'react-native';
 
 export default props => (
     <View>
-        <TextInput style={styles.numero} />
+        <TextInput style={styles.numero} value={props.num} />
     </View>
 );
 
