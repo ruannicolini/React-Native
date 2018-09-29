@@ -21,11 +21,21 @@ import { Comando } from './Comando';
 class Painel extends Component {
     constructor(props){
         super(props);
-        this.state = { num1 : '', num2: ''};
+        this.state = { num1 : '10', num2: '25'};
+
+        // Como passamos a funcao calcula como props (acao) para o componente COMANDO,
+        // o javascript intende que o conexto deve ser mudado;
+        // e como dentro da função calcular usamos os valores this.state.num1 e this.state.num2, ele tenta
+        // acessar os valores this.state.num1 e this.state.num2 do componente COMANDO, e dentro do 
+        // componente COMANDO nao existe essas var de estado. Essa situacao é definida como contexto lexico
+        //Para amarrar o contexto a um componente especifico, utilizamos o codigo abaixo.
+        this.calcular = this.calcular.bind(this);
+
     }
 
     calcular(){
-        console.log('oi,ok!');
+        const  resultado = parseFloat(this.state.num1) + parseFloat(this.state.num2);
+        console.log(resultado);
     }
 
     render () {
