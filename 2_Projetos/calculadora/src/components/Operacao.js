@@ -2,17 +2,13 @@ import React, { Component } from 'react';
 import { View, Picker, StyleSheet } from 'react-native';
 
 export default class Operacao extends Component {
-
-    constructor(props){
-        super(props);
-        this.state = { oper: '' };
-    }
-
     render () {
         return(
-            <Picker style={ styles.operacao } selectedValue={this.state.oper} 
+            <Picker 
+                style={ styles.operacao } 
+                selectedValue={this.props.oper} //Obs. aqui usamos "THIS".props.nome pq é um componente de classe, se fosse um componente funcional, utilizariamos apenas props.oper pa estariamos recebendo props por parametro.
                 onValueChange={ //Essa função é disparada ao selecionar uma opção de item
-                    op =>{ this.setState({ oper : op }) } // Aqui estamos atribuindo o value do item a var de estado OPER
+                    op =>{ this.props.atualizaOperacao(op); }
                 }
             >
                 <Picker.Item label = 'Soma' value = 'soma' />
@@ -22,8 +18,6 @@ export default class Operacao extends Component {
         );
     }
 }
-
-
 
 const styles = StyleSheet.create({
     operacao: {

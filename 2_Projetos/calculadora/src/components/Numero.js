@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     numero: {
         width: 140,
         height: 80,
-        fontSize: 20    
+        fontSize: 20,
+        textAlign: 'center'   
     }
 });
