@@ -9,55 +9,7 @@ import {
 
 export default class App extends Component {
 
-  constructor(props){
-    super(props);
-    this.state = { pontuacao : 0 }
-  }
-
-  listarDados(){
-    var pontuacao = firebase.database().ref('pontuacao');
-
-    // Adicionar um listener: Um ouvinte para o nó.
-    // O primeiro parametro é o tipo do evento disparado, que ppode ser: 
-    // value, child_added, child_changed, child_removed, child_moved
-    // O segundo parametro é uma funcao,aonde conseguimos recuperar os dados;
-    // Toda vez que o firebase executar o evento informado para nó em questao, o react executara a função informada.
-    pontuacao.on('value', (snapshot)=>{
-        const valor = snapshot.val(); // recupera o valor
-        this.setState( { pontuacao : valor} );
-
-    } );
-  }
-
-  salvarDados(){
-    // var database = firebase.database(); // Recupera o objeto que faz a persistencia dos dados
-    // database.ref("pontuacao").set("200") ; // cria o nó pontuacao e seta/altera 100
-    // database.ref("pontuacao").remove(); // Remove Dados
-
-  
-    var funcionarios = firebase.database().ref('funcionarios'); // Recupera o objeto que faz a persistencia dos dados
-    // funcionarios.child("001").child("nome").set("Jamilton"); // Set ou atualiza
-    // funcionarios.child("002").child("nome").set("Jorge");
-    // funcionarios.child("001").remove(); // Remove o child 001;
-    // funcionarios.remove(); // Remove completamente o nó de funcionários
-
-    // O método push gera o ID, nesse caso nao precisamos definir como no caso acima.
-    // funcionarios.push().child("nome").set("Ruan"); 
-
-    //Podemos salvar um objeto literal tbm
-    // funcionarios.push().set(
-    //   {
-    //     nome : 'Ruan',
-    //     telefone : '33 991321006',
-    //     cidade : 'Resplendor'
-    //   }
-    // ); 
-    
-
-
-  }
-
-  componentWillMount(){
+  componentWillMount () {
       var config = {
         apiKey: "AIzaSyAx_YvYauWIIdeQsQHA-SptN7d2ufyDJQ0",
         authDomain: "configuracaofirebasereac-b18ee.firebaseapp.com",
@@ -69,25 +21,45 @@ export default class App extends Component {
       firebase.initializeApp(config);
   }
 
-  render() {
+  cadastrarUsuario(){
+    var email = "ruannicolini@gmail.com";
+    var senha = "102313";
+    const usuario = firebase.auth();
+    usuario.createUserWithEmailAndPassword(email,senha).catch(
+      (erroCapturado) => {
+        var mensagemErro = ' ';
+        if (erroCapturado.code =='auth/weak-password') {
+          mensagemErro = 'A senha precisa ter no mínimo 6 caracteres.';
+        }else{
+          if (erroCapturado.code =='auth/invalid-email') {
+            mensagemErro = 'Email inválido.';
+          }else{
+            if (erroCapturado.code =='auth/email-already-in-use') {
+              mensagemErro = 'Email já cadastrado.';
+            }else{
+              if (erroCapturado.code =='auth/operation-not-allowed') {
+                mensagemErro = 'Email/Senha não localizado.';
+              }else{
     
-     let {pontuacao} = this.state; // substitui {this.state.pontuacao}
+              }
+            }
+          }  
+        }
 
+        alert(mensagemErro);
+      }
+    );
+  }
+
+  render() {
     return (
       <View >
           <Button 
-            title='Salvar Dados'
+            title='Cadastrado Usuário'
             color='#841584'
-            onPress={ () => { this.salvarDados(); } } 
-            accessibilityLabel='Salvar dados'
+            onPress={ () => { this.cadastrarUsuario(); } } 
+            accessibilityLabel='cadastrar usuarios'
           />
-          <Button 
-            title='Listar Dados'
-            color='#841584'
-            onPress={ () => { this.listarDados(); } } 
-            accessibilityLabel='Salvar dados'
-          />
-          <Text>{pontuacao}</Text>
       </View>
     );
   }
