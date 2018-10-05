@@ -1,0 +1,52 @@
+
+https://jsfiddle.net/rth7uxck/8/
+
+RECURSO EXTERNO:
+https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.0/redux.js
+
+== CÓDIGO ==
+
+// Contador
+
+//reduces
+//A action diz como o rece vai levar a aplicacao do estato atual para o estado informado.
+function reduces(state = 0, action){
+
+	switch(action.type){
+  	case 'INCREMENTO':
+    	return state+1;
+      
+    case 'DECREMENTO':
+    	return state-1;
+      
+    case 'ZERAR_CONTADOR':
+    	return 0;
+    
+    default:
+    	return state;
+  }
+
+}
+
+//cria store
+let store = Redux.createStore(reduces);
+
+//recupera o estado
+document.write( store.getState()+'<br />' );
+
+store.dispatch( { type:'INCREMENTO' } );
+store.dispatch( { type:'INCREMENTO' } );
+store.dispatch( { type:'INCREMENTO' } );
+store.dispatch( { type:'INCREMENTO' } );
+
+document.write( store.getState() + '<br />' );
+
+store.dispatch( { type:'DECREMENTO' } );
+
+document.write( store.getState() + '<br />' );
+
+store.dispatch( { type:'ZERAR_CONTADOR' } );
+
+document.write( store.getState() + '<br />' );
+
+
