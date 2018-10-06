@@ -3,7 +3,7 @@ import { View, Text, TextInput, Button, TouchableHighlight } from 'react-native'
 import { Actions }  from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
-export default props => { 
+const formLogin = props => { 
     console.log(props);    
     return (
         <View style={ {flex : 1, padding : 10} } >
@@ -11,8 +11,8 @@ export default props => {
                 <Text style={ { fontSize: 25 } } >WhatsApp Clone</Text>
             </View>
             <View style={ {flex : 2} } >
-                <TextInput style={ { fontSize: 20, height: 45 } } placeholder='E-mail' />
-                <TextInput style={ { fontSize: 20, height: 45 } } placeholder='Senha' />
+                <TextInput value={props.email} style={ { fontSize: 20, height: 45 } } placeholder='E-mail' />
+                <TextInput value={props.senha} style={ { fontSize: 20, height: 45 } } placeholder='Senha' />
 
                 <TouchableHighlight onPress={ () => { } } >
                     <Text style={ { fontSize: 20 } } >Ainda não tem cadastro? Cadastre-se</Text>
@@ -25,3 +25,12 @@ export default props => {
         </View>
 );
 }
+
+const mapStateToProps = state => (
+    {
+        email: state.AutenticacaoReducer.email,
+        senha: state.AutenticacaoReducer.senha
+    }
+);
+
+export default connect(mapStateToProps, null)(formLogin)

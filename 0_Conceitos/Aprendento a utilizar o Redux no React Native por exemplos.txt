@@ -1,0 +1,84 @@
+
+
+
+Aprendendo Redux
+
+========== Provier ==========
+Encapsula a aplicacao, de tal forma que todos os estados passem por ele.
+Ele deve ficar dentro do arquivo app.js. 
+
+Note no exemplo abaixo que foi feita sua importação, e dentro da função de 
+exportação (export default), encapsulamos as rotas pelo Provider.
+
+Para estabelecer a comunicação entre o componente Provider e o redux, utilizamos o
+createStore. Note sua importação e como ele foi passado via parametro no componente Provider.
+
+o createStore cria a store (loja) do redux. Dentro do createStore passamos um combineReducers: um componente que
+armazena todos os reduces da aplicação (funções puras que evoluem os estados das nossas aplicações).
+
+o combineReducers foi criado dentro da pasta reduces, no arquivo index.js
+Por isso no exemplo abaixo, fazemos import reduces from './reduces';
+Ele tbm poderia ser criado ali mesmo como parametros.
+
+//App.js
+import React from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+
+import Routes from './Routes';
+import reduces from './reduces';
+
+export default props => (
+    <Provider store={ createStore(reduces) } >
+        <Routes />
+    </Provider>
+);
+
+
+========== reduces/index.js ==========
+
+Conforme explicado anteriormente, o combineReducers foi criado dentro da pasta reduces, no arquivo index.js
+Abaixo é exibido o arquivo index.js
+
+Na função de exportação de reduces/index.js, exportamos o combineReducers. 
+O combineReducers espera receber um conjunto de reduces como parametro, 
+no caso abaixo criamos um objeto literal 
+
+Podemos observar que nesse objeto literal criado, temos o AutenticacaoReducer.
+o AutenticacaoReducer é um reducer que gerencará os estados da aplicação utilizado nos componentes 
+formeLogin e formCadastro. (Relatados posteriormente)
+Ele foi concebido como componente funcional (Basicamente, é uma função), por isso a importação. Sim, eu estou importanto uma função e atribuindo ela no objeto literal dentro do reducer.
+
+//index.js
+import { combineReducers } from 'redux';
+import AutenticacaoReducer from './AutenticacaoReducer';
+
+export default combineReducers({
+    AutenticacaoReducer: AutenticacaoReducer,
+    reducer2Exemplo: () => [], //Exemplo
+    reducer3 : reducer3		   //Exemplo	
+});
+
+
+==========  AutenticacaoReducer.js ========== 
+
+Reduces são funções puras e recebem 2 parametros: o state e o action;
+
+Abaixo podemos notar que criamos uma constante para definir quais variaveis de estados queremos gerenciar neste reducer e qual é o estado inicial de cada uma,
+Esse passo é recomendado na documentação do redux (const INITIAL_STATE).
+
+Desta forma podemos pegar essa constante (INITIAL_STATE) e atribuir a variavel state da aplicação (state = INITIAL_STATE) // dentro dos parametros
+
+
+//AutenticacaoReducer.js
+const INITIAL_STATE = {
+    nome: 'Ruan',
+    email: 'ruannicolini@gmail.com',
+    senha: '102313'
+}
+export default (state = INITIAL_STATE, action) => {
+    return state;
+}
+
+
+
