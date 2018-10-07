@@ -1,6 +1,7 @@
 
 
 
+
 Aprendendo Redux
 
 ========== Provier ==========
@@ -76,17 +77,36 @@ const INITIAL_STATE = {
     email: 'ruannicolini@gmail.com',
     senha: '102313'
 }
+
 export default (state = INITIAL_STATE, action) => {
+
+    console.log(action);
+    
+    if(action.type == 'modifica_email'){
+        return { ...state, email: action.payload }
+    }
+
+    if(action.type == 'modifica_senha'){
+        return { ...state, email: action.payload }
+    }
+
+
     return state;
 }
-
 
 
 ==========  FormLogin.js ========== 
 
 O componente formLogin nao tem var de estado definidas nele, logo utilizaremos as var de estado definidas no redux.
-Para isso, o metodo "connect" conecta as variaveis de estado do redux como propriedades de um componente (FormLogin). Esse metodo (conect) é utilizado no export default, conforme exemplo abaixo. O metodo conect recebe como parametro o recurso que ele vai decorar/obter/atribuir (mapStateToProps) e na sequencia qual componente receberá essas propriedades (FormLogin)
-	export default connect(mapStateToProps, null)(formLogin)
+Para isso, o metodo "connect" conecta as variaveis de estado do redux como propriedades de um componente (FormLogin). Esse metodo (conect) é utilizado no export default, conforme exemplo abaixo. O metodo conect recebe como parametro o recurso que ele vai decorar/obter/atribuir (mapStateToProps) e qual a actioncreate que evoluira o estado da props ( {modificaEmail} ) ; na sequencia o metodo connect recebe qual componente receberá essas propriedades (FormLogin)
+	export default connect(mapStateToProps, { modificaEmail} )(formLogin)
+
+A actioncreate modificaEmail foi importada de AutenticacaoAction.js e tera seu codigo exibido no proximo topico. 
+O importante é saber que as var de estado e a actioncreate agora estao acessiveis pela props do componente. 
+Dado esse fato, ja podemos utiliza-las, observe que no exemplo abaixo, o texInput recebe como value a props.email
+e no evento onChangeText, que espera receber uma funcao de callback,utilizamos a props.modificaEmail, passando o textomodificado.
+
+	<TextInput value={props.email} style={ { fontSize: 20, height: 45 } } placeholder='E-mail' onChangeText={ texto => props.modificaEmail(texto) } />
 
 
 A função mapStateToProps, faz o vinculo dos dados de estado do redux como propriedades para o componente FormLogin. Pois essas variaveis de estado foram criadas fora deste componente. A função mapStateToProps é passada como parametro dentro do método connect, no export defaul.
@@ -103,30 +123,41 @@ Bom, a espectativa é que essas var de estado sejam acessadas como properties do 
 Entao, toda vez que precisar, lembre-se de utilizar "props".nomePropsDefinido e nao mais this.state.NomeState como faziamos.
 
 //FormLogin.js
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, TextInput, Button, TouchableHighlight } from 'react-native';
 import { Actions }  from 'react-native-router-flux';
 import { connect } from 'react-redux';
+import { modificaEmail, modificaSenha } from '../actions/AutenticacaoActions';
 
 const formLogin = props => { 
-    console.log(props);    
+    // console.log(props);    
     return (
         <View style={ {flex : 1, padding : 10} } >
+
             <View style={ {flex : 1, justifyContent : 'center', alignItems : 'center'} } >
                 <Text style={ { fontSize: 25 } } >WhatsApp Clone</Text>
             </View>
+
             <View style={ {flex : 2} } >
-                <TextInput value={props.email} style={ { fontSize: 20, height: 45 } } placeholder='E-mail' />
-                <TextInput value={props.senha} style={ { fontSize: 20, height: 45 } } placeholder='Senha' />
+
+                <TextInput value={props.email} style={{ fontSize: 20, height: 45 }} placeholder='E-mail' 
+                    onChangeText={texto  => { props.modificaEmail(texto) }}
+                />
+
+                <TextInput value={props.senha} style={ { fontSize: 20, height: 45 } } placeholder='Senha' 
+                    onChangeText={texto  => { props.modificaSenha(texto) }}
+                />
 
                 <TouchableHighlight onPress={ () => { } } >
                     <Text style={ { fontSize: 20 } } >Ainda não tem cadastro? Cadastre-se</Text>
                 </TouchableHighlight>
+
             </View>
 
             <View style={ {flex : 2} } >
                 <Button title="Acessar" color='#115E54' onPress={() => Actions.formCadastro() } />
             </View>
+
         </View>
 );
 }
@@ -138,4 +169,31 @@ const mapStateToProps = state => (
     }
 );
 
-export default connect(mapStateToProps, null)(formLogin)
+export default connect(mapStateToProps, { modificaEmail, modificaSenha } ) (formLogin)
+
+
+
+
+
+==========  AutenticacaoAction.js ========== 
+
+
+Actioncreate é a função que vai evoluir o estado, no caso, a função modificaEmail. 
+Action é o retorno dessa função.
+ Cada actionCreate precisa retornar um objeto literal que tem que ter a chave 'type',
+A chave type (modifica_email) define como devemos evoluir o estado da aplicação 
+
+ Podemos tbm passar dados atraves dessa action. Esses dados vao ser interceptado no reducer.
+A documentação sugere o nome de payload para esses dados, eles sao compostos de chave e valor.
+payload sao dados que podem ser utilizados dentro do reducer.
+ o payload nao precisa receber o "novo valor" do estado (texto), o redux faz isso 
+automaticamente atraves das ligações realizadas, mas caso vc queira conferir ou usar esse valor dentro do reducer,
+pode fazer "payload: texto"
+
+// AutenticacaoAction.js
+export const modificaEmail = (texto) => {
+    return{
+        type: 'modifica_email',
+        payload: 'teste' 
+    }
+}
