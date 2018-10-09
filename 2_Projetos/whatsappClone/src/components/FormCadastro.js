@@ -8,15 +8,17 @@ const formCadastro = props => (
     <Image style={ {flex:1, width: null} } source={require('../imgs/bg.png')} >
         <View style={ { flex:1,padding:10 } }>
             <View style={ {flex:4, justifyContent:'center'} }>
-                <TextInput value={props.nome} style={ {fontSize:20, height:45} } placeholder='Nome' 
+                <TextInput value={props.nome} style={ {fontSize:20, height:45} }
                 onChangeText={(texto) => {props.modificaNome(texto)} }
+                placeholder='Nome' placeholderTextColor='#fff'
                 />
-                <TextInput value={props.email} style={ {fontSize:20, height:45} } placeholder='E-mail' 
+                <TextInput value={props.email} style={ {fontSize:20, height:45} } 
                 onChangeText={(texto) => {props.modificaEmail(texto)} }
+                placeholder='E-mail' placeholderTextColor='#fff'
                 />
-                <TextInput value={props.senha} style={ {fontSize:20, height:45} } placeholder='Senha' 
+                <TextInput value={props.senha} style={ {fontSize:20, height:45} } 
                 onChangeText={(texto) => {props.modificaSenha(texto)} }
-                secureTextEntry
+                placeholder='Senha' secureTextEntry placeholderTextColor='#fff'
                 /> 
             </View>
             <View style={ {flex:1} }>
