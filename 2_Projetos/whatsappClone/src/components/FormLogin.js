@@ -6,7 +6,11 @@ import { connect } from 'react-redux';
 import { modificaEmail, modificaSenha } from '../actions/AutenticacaoActions';
 
 const formLogin = props => { 
-    // console.log(props);    
+    // console.log(props);   
+    
+    // No textinput temos a propriedade secureTextEntry, ela define se vamo colcoar segurança na senha e nao vamos exibir
+    // pode-se passa assim: secureTextEntry={true} ou simplismente secureTextEntry, ja que é um booleano.
+    
     return (
         <View style={ {flex : 1, padding : 10} } >
 
@@ -22,16 +26,17 @@ const formLogin = props => {
 
                 <TextInput value={props.senha} style={ { fontSize: 20, height: 45 } } placeholder='Senha' 
                     onChangeText={texto  => { props.modificaSenha(texto) }}
+                    secureTextEntry
                 />
 
-                <TouchableHighlight onPress={ () => { } } >
+                <TouchableHighlight onPress={() => Actions.formCadastro() } >
                     <Text style={ { fontSize: 20 } } >Ainda não tem cadastro? Cadastre-se</Text>
                 </TouchableHighlight>
 
             </View>
 
             <View style={ {flex : 2} } >
-                <Button title="Acessar" color='#115E54' onPress={() => Actions.formCadastro() } />
+                <Button title="Acessar" color='#115E54'  />
             </View>
 
         </View>

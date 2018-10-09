@@ -24,3 +24,10 @@ export const modificaSenha = (texto) => {
     }
 }
 
+export const modificaNome = (texto) => {
+    // console.log(texto);
+    return {
+        type: 'modifica_nome',
+        payload: texto
+    }
+}
