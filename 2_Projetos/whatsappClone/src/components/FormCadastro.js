@@ -1,32 +1,56 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { View, TextInput, Button, Image } from 'react-native';
 import { Actions }  from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { modificaEmail, modificaSenha, modificaNome } from '../actions/AutenticacaoActions';
+import { modificaEmail, modificaSenha, modificaNome, cadastraUsuario } from '../actions/AutenticacaoActions';
 
-const formCadastro = props => (
-    <Image style={ {flex:1, width: null} } source={require('../imgs/bg.png')} >
-        <View style={ { flex:1,padding:10 } }>
-            <View style={ {flex:4, justifyContent:'center'} }>
-                <TextInput value={props.nome} style={ {fontSize:20, height:45} }
-                onChangeText={(texto) => {props.modificaNome(texto)} }
-                placeholder='Nome' placeholderTextColor='#fff'
-                />
-                <TextInput value={props.email} style={ {fontSize:20, height:45} } 
-                onChangeText={(texto) => {props.modificaEmail(texto)} }
-                placeholder='E-mail' placeholderTextColor='#fff'
-                />
-                <TextInput value={props.senha} style={ {fontSize:20, height:45} } 
-                onChangeText={(texto) => {props.modificaSenha(texto)} }
-                placeholder='Senha' secureTextEntry placeholderTextColor='#fff'
-                /> 
-            </View>
-            <View style={ {flex:1} }>
-                <Button title='Cadastrar' color='#115E54' onPress={ () => { false } } />
-            </View>
-        </View>
-    </Image>
-);
+class formCadastro extends Component {
+
+    _cadastraUsuario(){
+
+        const { nome, email, senha} = this.props;
+
+        // ou
+
+        // const nome = this.props.nome;
+        // const email = this.props.email;
+        // const senha = this.props.senha;
+
+        this.props.cadastraUsuario({nome,email,senha});
+    }
+
+    render(){
+        return(
+            <Image style={ {flex:1, width: null} } source={require('../imgs/bg.png')} >
+                <View style={ { flex:1,padding:10 } }>
+                    <View style={ {flex:4, justifyContent:'center'} }>
+
+                        <TextInput value={this.props.nome} style={ {fontSize:20, height:45} }
+                        onChangeText={(texto) => {this.props.modificaNome(texto)} }
+                        placeholder='Nome' placeholderTextColor='#fff'
+                        />
+
+                        <TextInput value={this.props.email} style={ {fontSize:20, height:45} } 
+                        onChangeText={(texto) => {this.props.modificaEmail(texto)} }
+                        placeholder='E-mail' placeholderTextColor='#fff'
+                        />
+
+                        <TextInput value={this.props.senha} style={ {fontSize:20, height:45} } 
+                        onChangeText={(texto) => {this.props.modificaSenha(texto)} }
+                        placeholder='Senha' secureTextEntry placeholderTextColor='#fff'
+                        /> 
+
+                    </View>
+
+                    <View style={ {flex:1} }>
+                        <Button title='Cadastrar' color='#115E54' onPress={ () =>  this._cadastraUsuario()  } />
+                    </View>
+
+                </View>
+            </Image>
+        );
+    }
+}
 
 const mapStateToProps = state => ({
     nome: state.AutenticacaoReducer.nome,
@@ -34,4 +58,4 @@ const mapStateToProps = state => ({
     senha: state.AutenticacaoReducer.senha
 });
 
-export default connect(mapStateToProps, { modificaEmail, modificaSenha, modificaNome } ) (formCadastro)
+export default connect(mapStateToProps, { modificaEmail, modificaSenha, modificaNome, cadastraUsuario } ) (formCadastro)
