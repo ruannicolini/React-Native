@@ -1,7 +1,8 @@
 const INITIAL_STATE = {
     nome: '',
     email: '',
-    senha: ''
+    senha: '',
+    erroCadastro: ''
 }
 
 //Os reducers recebem obrigatoriamente 2 parametros: o estado a ação e a acao que levara ao estado.
@@ -20,6 +21,14 @@ export default (state = INITIAL_STATE, action) => {
 
     if(action.type == 'modifica_nome'){
         return { ...state, nome: action.payload }
+    }
+
+    if(action.type == 'cadastro_usuario_sucesso'){
+        return { ...state, nome: '', senha: '' }    
+    }
+
+    if(action.type == 'cadastro_usuario_erro'){
+        return { ...state, erroCadastro: action.payload }    
     }
 
     return state;

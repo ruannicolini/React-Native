@@ -1,3 +1,5 @@
+import firebase from 'firebase';
+import { Actions }  from 'react-native-router-flux';
 
 //Actioncreate é a função que vai evoluir o estado, no caso, a função modificaEmail. 
 //Action é o retorno dessa função.
@@ -32,10 +34,23 @@ export const modificaNome = (texto) => {
     }
 }
 
-export const cadastraUsuario = ({nome,email,senha}) =>{
-    alert(nome);
-    return{
-        type: 'cadastra_usuario',
-        payload:''
+export const cadastraUsuario = ({ nome, email, senha }) => {
+    // Como a função é sincrona, devemos usar um dispatch para que esse pedaço de codigo 
+    // seja executado somente apos o retorno do cadastro.
+    // Obs nao esqueca da applyMiddleware(ReduxThunk) no cadastro da createStore
+    return dispatch => {
+        firebase.auth().createUserWithEmailAndPassword(email, senha)
+        .then(user => cadastroUsuarioSucesso(dispatch))
+        .catch(erro => cadastroUsuarioErro(erro, dispatch));
     }
+    
+}
+
+const cadastroUsuarioSucesso = (dispatch) => {
+    dispatch( {type: 'cadastro_usuario_sucesso'} );
+    Actions.formBoasVindas();
+}
+
+const cadastroUsuarioErro = (erro,dispatch) => {
+    dispatch( {type: 'cadastro_usuario_erro', payload: erro.message} );
 }

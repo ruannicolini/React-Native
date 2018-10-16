@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, TextInput, Button, Image } from 'react-native';
+import { View, TextInput, Button, Image, Text } from 'react-native';
 import { Actions }  from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { modificaEmail, modificaSenha, modificaNome, cadastraUsuario } from '../actions/AutenticacaoActions';
@@ -40,13 +40,19 @@ class formCadastro extends Component {
                         placeholder='Senha' secureTextEntry placeholderTextColor='#fff'
                         /> 
 
+                        <Text style={ {color:'#ff0000', fontSize:18} } >{this.props.erroCadastro}</Text>
+
                     </View>
 
+                    
                     <View style={ {flex:1} }>
                         <Button title='Cadastrar' color='#115E54' onPress={ () =>  this._cadastraUsuario()  } />
                     </View>
 
                 </View>
+
+                
+
             </Image>
         );
     }
@@ -55,7 +61,8 @@ class formCadastro extends Component {
 const mapStateToProps = state => ({
     nome: state.AutenticacaoReducer.nome,
     email: state.AutenticacaoReducer.email,
-    senha: state.AutenticacaoReducer.senha
+    senha: state.AutenticacaoReducer.senha,
+    erroCadastro: state.AutenticacaoReducer.erroCadastro
 });
 
 export default connect(mapStateToProps, { modificaEmail, modificaSenha, modificaNome, cadastraUsuario } ) (formCadastro)
