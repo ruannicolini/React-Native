@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
+import b64 from 'base-64';
 
 //Actioncreate é a função que vai evoluir o estado, no caso, a função modificaEmail. 
 //Action é o retorno dessa função.
@@ -40,7 +41,13 @@ export const cadastraUsuario = ({ nome, email, senha }) => {
     // Obs nao esqueca da applyMiddleware(ReduxThunk) no cadastro da createStore
     return dispatch => {
         firebase.auth().createUserWithEmailAndPassword(email, senha)
-        .then(user => cadastroUsuarioSucesso(dispatch))
+        .then(user => { 
+            let emailB64 = b64.encode(email);
+
+            firebase.database().ref('/contatos/'+emailB64)
+                    .push({ nome })
+                    .then(value => cadastroUsuarioSucesso(dispatch) )
+        })
         .catch(erro => cadastroUsuarioErro(erro, dispatch));
     }
     
