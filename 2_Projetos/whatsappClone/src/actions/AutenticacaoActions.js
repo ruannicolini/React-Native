@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { Actions }  from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 
 //Actioncreate é a função que vai evoluir o estado, no caso, a função modificaEmail. 
 //Action é o retorno dessa função.

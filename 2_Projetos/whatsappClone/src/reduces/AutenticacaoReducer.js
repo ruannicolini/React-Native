@@ -12,7 +12,7 @@ export default (state = INITIAL_STATE, action) => {
     console.log(action);
     
     if(action.type == 'modifica_email'){
-        return { ...state, email: action.payload }  // ... é operador spread do javascript ES6 
+        return { ...state, email: action.payload }
     }
 
     if(action.type == 'modifica_senha'){
@@ -23,12 +23,12 @@ export default (state = INITIAL_STATE, action) => {
         return { ...state, nome: action.payload }
     }
 
-    if(action.type == 'cadastro_usuario_sucesso'){
-        return { ...state, nome: '', senha: '' }    
+    if(action.type == 'cadastro_usuario_sucesso') {
+        return { ...state, nome: '', senha: ''}
     }
 
-    if(action.type == 'cadastro_usuario_erro'){
-        return { ...state, erroCadastro: action.payload }    
+    if(action.type == 'cadastro_usuario_erro') {
+        return { ...state, erroCadastro: action.payload}
     }
 
     return state;
