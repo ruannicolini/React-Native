@@ -5,6 +5,7 @@ import { Actions }  from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { modificaEmail, modificaSenha, autenticarUsuario } from '../actions/AutenticacaoActions';
 
+
 class formLogin extends Component { 
 
     _autenticarUsuario(){
@@ -44,6 +45,10 @@ class formLogin extends Component {
                             secureTextEntry
                             placeholder='Senha' placeholderTextColor='#fff'
                         />
+
+                        <Text style={ {color:'#ff0000', fontSize:18} } > 
+                            {this.props.erroLogin} 
+                        </Text>
     
                         <TouchableHighlight onPress={() => Actions.formCadastro() } >
                             <Text style={ { fontSize: 20, color:'#fff' } } >Ainda não tem cadastro? Cadastre-se</Text>
@@ -66,7 +71,8 @@ class formLogin extends Component {
 const mapStateToProps = state => (
     {
         email: state.AutenticacaoReducer.email,
-        senha: state.AutenticacaoReducer.senha
+        senha: state.AutenticacaoReducer.senha,
+        erroLogin: state.AutenticacaoReducer.erroLogin
     }
 );
 
