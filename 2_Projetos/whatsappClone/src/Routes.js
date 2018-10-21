@@ -19,7 +19,7 @@ const Principal = props => (
             navigationBarStyle={ {backgroundColor: '#115E54' } }
             titleStyle={ {color: '#fff'} }
         >
-            <Scene key='formLogin' component={FormLogin} title="Login" initial hideNavBar={false} />
+            <Scene key='formLogin' component={FormLogin} title="Login" initial hideNavBar={true} />
             <Scene key='formCadastro' component={FormCadastro} title="Cadastro" hideNavBar={false} />
             <Scene key='formBoasVindas' component={FormBoasVindas} title="Bem Vindo!" hideNavBar={true} />
             <Scene key='formPrincipal' component={FormPrincipal} title="WhatsApp Clone" hideNavBar={true} />
