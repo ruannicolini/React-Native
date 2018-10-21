@@ -35,16 +35,20 @@ export const modificaNome = (texto) => {
     }
 }
 
+
 export const cadastraUsuario = ({ nome, email, senha }) => {
     // Como a função é sincrona, devemos usar um dispatch para que esse pedaço de codigo 
     // seja executado somente apos o retorno do cadastro.
     // Obs nao esqueca da applyMiddleware(ReduxThunk) no cadastro da createStore
+
+    //interpolação = igual a concatenação,operador cráse em firebase.database().ref(`/contatos/${emailB64}`) 
+
     return dispatch => {
         firebase.auth().createUserWithEmailAndPassword(email, senha)
         .then(user => { 
             let emailB64 = b64.encode(email);
 
-            firebase.database().ref('/contatos/'+emailB64)
+            firebase.database().ref(`/contatos/${emailB64}`) 
                     .push({ nome })
                     .then(value => cadastroUsuarioSucesso(dispatch) )
         })
@@ -60,4 +64,17 @@ const cadastroUsuarioSucesso = (dispatch) => {
 
 const cadastroUsuarioErro = (erro,dispatch) => {
     dispatch( {type: 'cadastro_usuario_erro', payload: erro.message} );
+}
+
+export const autenticarUsuario = ( {email,senha} ) => {
+    console.log(email);
+    console.log(senha);
+
+    firebase.auth().signInAndRetrieveDataWithEmailAndPassword(email,senha)
+        .then( value => console.log(value) )
+        .catch( erro => console.log(erro) );
+
+    return {
+        type: 'autenticar_usuario'
+    }
 }
