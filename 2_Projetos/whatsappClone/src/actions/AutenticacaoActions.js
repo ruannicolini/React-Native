@@ -71,7 +71,7 @@ export const autenticarUsuario = ( {email,senha} ) => {
     console.log(senha);
 
     return dispatch => {
-        firebase.auth().signInAndRetrieveDataWithEmailAndPassword(email,senha)
+        firebase.auth().signInWithEmailAndPassword(email,senha)
             .then( value => loginUsuarioSucesso(dispatch) )
             .catch( erro => loginUsuarioErro(erro,dispatch) );
     }
@@ -81,6 +81,7 @@ const loginUsuarioSucesso = (dispatch) => {
     dispatch({
         type:'login_usuario_sucesso'
     });
+    Actions.formPrincipal();
 }
 
 const loginUsuarioErro = (erro,dispatch) => {
