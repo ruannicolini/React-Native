@@ -9,7 +9,8 @@ import {
     CADASTRO_USUARIO_ERRO, 
     LOGIN_USUARIO_SUCESSO,
     LOGIN_USUARIO_ERRO,
-    LOGIN_EM_ANDAMENTO
+    LOGIN_EM_ANDAMENTO,
+    CADASTRO_EM_ANDAMENTO
 } from './types';
 
 //Actioncreate é a função que vai evoluir o estado, no caso, a função modificaEmail. 
@@ -54,6 +55,9 @@ export const cadastraUsuario = ({ nome, email, senha }) => {
     //interpolação = igual a concatenação,operador cráse em firebase.database().ref(`/contatos/${emailB64}`) 
 
     return dispatch => {
+
+        dispatch({ type: CADASTRO_EM_ANDAMENTO });
+
         firebase.auth().createUserWithEmailAndPassword(email, senha)
         .then(user => { 
             let emailB64 = b64.encode(email);

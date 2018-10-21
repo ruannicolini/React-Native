@@ -17,7 +17,7 @@ class formLogin extends Component {
 
         if(this.props.loading_login){
             return(
-            <ActivityIndicator size="large" /> //large ou smal
+                <ActivityIndicator size="large" /> //large ou small
             )
         }
 
